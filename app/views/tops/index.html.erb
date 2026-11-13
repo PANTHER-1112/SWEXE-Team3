@@ -1,0 +1,15 @@
+<h1>まちのインフラを知る防災学習アプリ</h1>
+
+<% if logged_in? %>
+  <p>ようこそ、<strong><%= current_user.name %></strong> さん！</p>
+  <%# ログアウト用の DELETE リクエスト送信ボタン %>
+  <%= button_to "別の名前でやり直す（ログアウト）", session_path, method: :delete %>
+<% else %>
+  <p>スタンプラリーを始めるには、ニックネームまたは班名を入力してください。</p>
+  <%# 簡易ログインフォーム（POST /session） %>
+  <%= form_with url: session_path, method: :post do |form| %>
+    <%= form.label :name, "ニックネーム／班名" %>
+    <%= form.text_field :name, placeholder: "例：3年1組 1班" %>
+    <%= form.submit "参加する" %>
+  <% end %>
+<% end %>
