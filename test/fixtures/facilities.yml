@@ -1,0 +1,16 @@
+# テスト用の施設ダミーデータ
+one:
+  category: one
+  name: 第一小学校避難所
+  description: 地震のときに避難できる近くの小学校です。
+  address: 山口県美祢市大嶺町1-1
+  map_x: 25.0
+  map_y: 40.0
+
+two:
+  category: two
+  name: 中央給水拠点
+  description: 断水したときに飲料水を受け取れる給水所です。
+  address: 山口県美祢市大嶺町2-2
+  map_x: 65.0
+  map_y: 70.0
