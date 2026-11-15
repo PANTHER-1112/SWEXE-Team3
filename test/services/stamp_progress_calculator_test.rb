@@ -6,7 +6,7 @@ require_relative "../../app/services/stamp_progress_calculator"
 class StampProgressCalculatorTest < Minitest::Test
   def test_no_stamp_has_been_collected
     result = calculate(
-      facility_ids: [1, 2, 3],
+      facility_ids: [ 1, 2, 3 ],
       stamped_facility_ids: []
     )
 
@@ -19,8 +19,8 @@ class StampProgressCalculatorTest < Minitest::Test
 
   def test_some_stamps_have_been_collected
     result = calculate(
-      facility_ids: [1, 2, 3],
-      stamped_facility_ids: [1]
+      facility_ids: [ 1, 2, 3 ],
+      stamped_facility_ids: [ 1 ]
     )
 
     assert_equal 3, result[:total_count]
@@ -32,8 +32,8 @@ class StampProgressCalculatorTest < Minitest::Test
 
   def test_all_stamps_have_been_collected
     result = calculate(
-      facility_ids: [1, 2, 3],
-      stamped_facility_ids: [1, 2, 3]
+      facility_ids: [ 1, 2, 3 ],
+      stamped_facility_ids: [ 1, 2, 3 ]
     )
 
     assert_equal 3, result[:total_count]
@@ -45,8 +45,8 @@ class StampProgressCalculatorTest < Minitest::Test
 
   def test_duplicate_stamps_are_counted_only_once
     result = calculate(
-      facility_ids: [1, 2, 3],
-      stamped_facility_ids: [1, 1, 1]
+      facility_ids: [ 1, 2, 3 ],
+      stamped_facility_ids: [ 1, 1, 1 ]
     )
 
     assert_equal 1, result[:stamped_count]
@@ -55,8 +55,8 @@ class StampProgressCalculatorTest < Minitest::Test
 
   def test_unknown_facility_ids_are_ignored
     result = calculate(
-      facility_ids: [1, 2, 3],
-      stamped_facility_ids: [1, 4, 5]
+      facility_ids: [ 1, 2, 3 ],
+      stamped_facility_ids: [ 1, 4, 5 ]
     )
 
     assert_equal 1, result[:stamped_count]
@@ -89,8 +89,8 @@ class StampProgressCalculatorTest < Minitest::Test
   end
 
   def test_input_arrays_are_not_modified
-    facility_ids = [1, 1, 2, nil]
-    stamped_facility_ids = [1, 1, 3]
+    facility_ids = [ 1, 1, 2, nil ]
+    stamped_facility_ids = [ 1, 1, 3 ]
 
     original_facility_ids = facility_ids.dup
     original_stamped_facility_ids =
