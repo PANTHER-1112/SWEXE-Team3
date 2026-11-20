@@ -14,9 +14,9 @@ class MapPinBuilderTest < Minitest::Test
   )
 
   CategoryStub = Struct.new(
-  :disaster_type,
-  keyword_init: true
-)
+    :disaster_type,
+    keyword_init: true
+  )
 
   CategorizedFacilityStub = Struct.new(
     :id,
@@ -56,8 +56,8 @@ class MapPinBuilderTest < Minitest::Test
   end
 
   def test_gets_disaster_type_from_category
-    category = CategoryStub.new( 
-      disaster_type: "震災" )
+    category = CategoryStub.new(
+      disaster_type: "震災")
 
     facilities = [
       CategorizedFacilityStub.new(
