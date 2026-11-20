@@ -42,7 +42,7 @@
 | モジュール名 | 配置場所 | テストファイル | 検証内容 |
 | :--- | :--- | :--- | :--- |
 | **進捗計算サービス**<br>`StampProgressCalculator` | `app/services/stamp_progress_calculator.rb` | `test/services/stamp_progress_calculator_test.rb` | 対象施設 ID 配列と獲得済み ID 配列の積集合から、総数・獲得数・残数・達成率(%)・全達成判定を算出（重複・対象外 ID・0 件除算への耐性）。 |
-| **マップピン生成サービス**<br>`MapPinBuilder` | `app/services/map_pin_builder.rb` | `test/services/map_pin_builder_test.rb` | 施設リストと獲得済み ID 配列から、ピン描画用データ配列を生成（座標の `0.0〜100.0` 安全クランプ、獲得済みフラグ判定）。 |
+| **マップピン生成サービス**<br>`MapPinBuilder` | `app/services/map_pin_builder.rb` | `test/services/map_pin_builder_test.rb` | 施設リストと獲得済み ID 配列から、ピン描画用データ配列を生成（`0.0〜100.0` の範囲外・不正座標は自動補正せず除外、獲得済みフラグ判定）。 |
 | **災害種別フィルタサービス**<br>`FacilityFilter` | `app/services/facility_filter.rb` | `test/services/facility_filter_test.rb` | 選択された災害タイプ（例：「風水害」「震災」「土砂」「すべて」）に応じて施設リストを絞り込む。 |
 
 ### 3-2. PostgreSQL 使用・Rails 統合テスト可能なモジュール（メンバーA 担当）
