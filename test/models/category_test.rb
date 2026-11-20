@@ -8,15 +8,22 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "許可されていない災害タイプは無効であること" do
-    category = Category.new(name: "旧分類施設", disaster_type: "地震")
-    assert_not category.valid?
-    assert_includes category.errors[:disaster_type], "is not included in the list"
+    earthquake = Category.new(name: "旧分類施設1", disaster_type: "地震")
+    flood = Category.new(name: "旧分類施設2", disaster_type: "水害")
+    assert_not earthquake.valid?
+    assert_includes earthquake.errors[:disaster_type], "is not included in the list"
+    assert_not flood.valid?
+    assert_includes flood.errors[:disaster_type], "is not included in the list"
   end
 
-  test "カテゴリ名または災害タイプが空の場合は無効であること" do
-    category = Category.new(name: "", disaster_type: "")
-    assert_not category.valid?
-    assert_includes category.errors[:name], "can't be blank"
-    assert_includes category.errors[:disaster_type], "can't be blank"
+  test "カテゴリ名または災害タイプが空・nilの場合は無効であること" do
+    blank_category = Category.new(name: "", disaster_type: "")
+    assert_not blank_category.valid?
+    assert_includes blank_category.errors[:name], "can't be blank"
+    assert_includes blank_category.errors[:disaster_type], "can't be blank"
+
+    nil_category = Category.new(name: "避難所", disaster_type: nil)
+    assert_not nil_category.valid?
+    assert_includes nil_category.errors[:disaster_type], "can't be blank"
   end
 end
