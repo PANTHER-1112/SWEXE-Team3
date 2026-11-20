@@ -1,0 +1,8 @@
+# テスト用のカテゴリ・対応災害タイプダミーデータ
+one:
+  name: 避難所
+  disaster_type: 地震
+
+two:
+  name: 給水所
+  disaster_type: 水害
