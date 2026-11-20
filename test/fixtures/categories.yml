@@ -1,8 +1,12 @@
 # テスト用のカテゴリ・対応災害タイプダミーデータ
 one:
   name: 避難所
-  disaster_type: 地震
+  disaster_type: 震災
 
 two:
   name: 給水所
-  disaster_type: 水害
+  disaster_type: 風水害
+
+three:
+  name: 土砂災害警戒区域
+  disaster_type: 土砂
