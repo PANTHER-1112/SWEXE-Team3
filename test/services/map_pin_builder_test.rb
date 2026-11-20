@@ -13,12 +13,26 @@ class MapPinBuilderTest < Minitest::Test
     keyword_init: true
   )
 
+  CategoryStub = Struct.new(
+  :disaster_type,
+  keyword_init: true
+)
+
+CategorizedFacilityStub = Struct.new(
+  :id,
+  :name,
+  :category,
+  :map_x,
+  :map_y,
+  keyword_init: true
+)
+
   def test_builds_map_pins
     facilities = [
       facility(
         id: 1,
         name: "防災センター",
-        disaster_type: "地震",
+        disaster_type: "震災",
         map_x: 25.5,
         map_y: 40.0
       )
@@ -35,11 +49,35 @@ class MapPinBuilderTest < Minitest::Test
 
     assert_equal 1, pin.facility_id
     assert_equal "防災センター", pin.name
-    assert_equal "地震", pin.disaster_type
+    assert_equal "震災", pin.disaster_type
     assert_equal 25.5, pin.map_x
     assert_equal 40.0, pin.map_y
     refute pin.stamped
   end
+
+  def test_gets_disaster_type_from_category
+  category = CategoryStub.new(
+    disaster_type: "震災"
+  )
+
+  facilities = [
+    CategorizedFacilityStub.new(
+      id: 1,
+      name: "防災センター",
+      category: category,
+      map_x: 25.5,
+      map_y: 40.0
+    )
+  ]
+
+  pins = build_pins(
+    facilities: facilities,
+    stamped_facility_ids: []
+  )
+
+  assert_equal 1, pins.length
+  assert_equal "震災", pins.first.disaster_type
+end
 
   def test_marks_stamped_facilities
     facilities = [
@@ -176,7 +214,7 @@ class MapPinBuilderTest < Minitest::Test
   def facility(
     id:,
     name: "施設",
-    disaster_type: "地震",
+    disaster_type: "震災",
     map_x: 50.0,
     map_y: 50.0
   )
