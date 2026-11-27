@@ -1,0 +1,15 @@
+<h1>防災施設一覧</h1>
+
+<ul>
+  <% @facilities.each do |facility| %>
+    <li>
+      <%= link_to facility.name, facility_path(facility) %>
+      （<%= facility.category.name %> / <%= facility.category.disaster_type %>）
+      <% if @stamped_facility_ids.include?(facility.id) %>
+        <span>【スタンプ獲得済み】</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to "トップへ戻る", root_path %></p>
