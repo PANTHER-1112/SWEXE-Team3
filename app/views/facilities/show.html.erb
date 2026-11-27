@@ -1,0 +1,17 @@
+<h1><%= @facility.name %></h1>
+
+<p>カテゴリ：<%= @facility.category.name %>（<%= @facility.category.disaster_type %>）</p>
+<p>住所：<%= @facility.address %></p>
+<p><%= @facility.description %></p>
+
+<% if logged_in? %>
+  <% if @is_stamped %>
+    <p>ステータス：スタンプ獲得済み</p>
+  <% else %>
+    <p>ステータス：未獲得</p>
+  <% end %>
+<% else %>
+  <p>スタンプを集めるにはトップ画面からニックネームを入力してください。</p>
+<% end %>
+
+<p><%= link_to "施設一覧へ戻る", facilities_path %></p>

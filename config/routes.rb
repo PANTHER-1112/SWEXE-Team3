@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # 簡易ログイン／ログアウト用のセッション管理
   resource :session, only: [ :create, :destroy ]
 
+  # 防災施設一覧・詳細
+  resources :facilities, only: [ :index, :show ]
   # --- Phase 2 以降で追加予定の共通ルーティング ---
   # resources :facilities, only: [ :index, :show ] do
   #   resource :stamp_log, only: [ :create ]
