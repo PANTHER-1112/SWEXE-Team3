@@ -26,7 +26,7 @@ class FacilityFilter
   private
 
   def all_disaster_types?
-    @disaster_type == ALL_DISASTER_TYPES
+    @disaster_type.to_s.strip.empty? || @disaster_type == ALL_DISASTER_TYPES
   end
 
   def disaster_type_for(facility)

@@ -61,6 +61,18 @@ class FacilityFilterTest < Minitest::Test
     refute_same @facilities, result
   end
 
+  def test_returns_all_facilities_when_disaster_type_is_nil
+    assert_equal @facilities, filter(nil)
+  end
+
+  def test_returns_all_facilities_when_disaster_type_is_empty
+    assert_equal @facilities, filter("")
+  end
+
+  def test_returns_all_facilities_when_disaster_type_is_whitespace
+    assert_equal @facilities, filter(" \t")
+  end
+
   def test_unknown_disaster_type_returns_no_facilities
     result = filter("不明")
 
