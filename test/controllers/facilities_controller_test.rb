@@ -15,7 +15,9 @@ class FacilitiesControllerTest < ActionDispatch::IntegrationTest
     get facilities_url
 
     assert_response :success
-    assert_match "スタンプ獲得済み", response.body
+    assert_select "li", text: /#{Regexp.escape(facilities(:one).name)}.*スタンプ獲得済み/m, count: 1
+    assert_select "li", text: /#{Regexp.escape(facilities(:two).name)}/, count: 1
+    assert_select "li", text: /#{Regexp.escape(facilities(:two).name)}.*スタンプ獲得済み/m, count: 0
   end
 
   test "未ログインでも施設詳細が正常に表示されること" do
